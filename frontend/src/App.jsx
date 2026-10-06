@@ -124,9 +124,13 @@ function App() {
         throw new Error(data.detail || 'Upload failed');
       }
 
-      setUploadStatusMsg(`Indexed ${data.filename} (${data.pages} pages, ${data.chunks} chunks)`);
+      if (data.status === 'already_exists') {
+        setUploadStatusMsg(`Document already exists in your library: "${data.display_title || data.filename}"`);
+      } else {
+        setUploadStatusMsg(`Indexed ${data.display_title || data.filename} (${data.pages} pages, ${data.chunks} chunks)`);
+      }
       await fetchAllData();
-      setTimeout(() => setUploadStatusMsg(''), 4000);
+      setTimeout(() => setUploadStatusMsg(''), 4500);
     } catch (err) {
       setErrorMessage(err.message || 'Failed to upload document');
       setUploadStatusMsg('');
@@ -523,15 +527,20 @@ function App() {
               </div>
             )}
 
-            {/* DOCUMENTS LIST */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginTop: '0.25rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <span style={{ fontSize: '0.775rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-muted)' }}>
-                  DOCUMENTS
-                </span>
-                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-                  {documents.length} in local repository
-                </span>
+            {/* KNOWLEDGE LIBRARY */}
+            <div className="kb-library-section" style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', marginTop: '0.75rem' }}>
+              <div className="kb-library-header" style={{ borderBottom: '1px solid var(--border-subtle)', paddingBottom: '0.65rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.2rem' }}>
+                  <h3 style={{ margin: 0, fontSize: '0.825rem', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--accent-primary, #6366f1)' }}>
+                    YOUR LOCAL KNOWLEDGE
+                  </h3>
+                  <span style={{ fontSize: '0.75rem', fontWeight: '600', color: 'var(--text-muted)' }}>
+                    {documents.length} unique {documents.length === 1 ? 'document' : 'documents'}
+                  </span>
+                </div>
+                <p style={{ margin: 0, fontSize: '0.785rem', color: 'var(--text-secondary)' }}>
+                  Documents stored and indexed locally
+                </p>
               </div>
 
               {documents.length === 0 ? (
@@ -554,42 +563,56 @@ function App() {
                 </div>
               ) : (
                 documents.map((doc) => {
+                  const displayTitle = doc.display_title || doc.filename;
                   const isIndexed = doc.indexing_status === 'indexed';
-                  const isProcessed = doc.status === 'processed' || doc.processing_status === 'processed';
                   const isError = doc.indexing_status === 'failed' || doc.status === 'error';
+                  const isProcessing = doc.indexing_status === 'pending' || doc.status === 'pending';
+
+                  let statusBadge = <span className="badge badge-success">✓ Indexed</span>;
+                  if (isError) {
+                    statusBadge = <span className="badge badge-error">✕ Error</span>;
+                  } else if (isProcessing) {
+                    statusBadge = <span className="badge badge-muted">⏳ Processing</span>;
+                  } else if (!isIndexed) {
+                    statusBadge = <span className="badge badge-warning">⚠ Needs Indexing</span>;
+                  }
+
+                  const chunkCount = doc.chunks || doc.chunks_count || 0;
+                  const pageLabel = `${doc.pages || 1} ${doc.pages === 1 ? 'page' : 'pages'}`;
+                  const chunkLabel = `${chunkCount} ${chunkCount === 1 ? 'chunk' : 'chunks'}`;
 
                   return (
-                    <div key={doc.document_id} className="doc-card">
-                      <div className="doc-card-header">
-                        <span className="doc-icon">📄</span>
-                        <div className="doc-info">
-                          <div className="doc-name" title={doc.filename}>{doc.filename}</div>
-                          <div className="doc-meta">
-                            Pages: {doc.pages} &bull; Chunks: {doc.chunks || doc.chunks_count}
+                    <div key={doc.document_id} className="doc-card" style={{ padding: '0.95rem', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-md)' }}>
+                      <div className="doc-card-header" style={{ alignItems: 'flex-start' }}>
+                        <span className="doc-icon" style={{ fontSize: '1.35rem', marginTop: '0.1rem' }}>📄</span>
+                        <div className="doc-info" style={{ flex: 1, minWidth: 0 }}>
+                          <div className="doc-name" title={displayTitle} style={{ fontSize: '0.95rem', fontWeight: '700', color: 'var(--text-primary)', letterSpacing: '-0.01em' }}>
+                            {displayTitle}
+                          </div>
+                          <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
+                            Original: <span style={{ fontFamily: 'monospace', color: 'var(--text-secondary)' }}>{doc.filename}</span>
+                          </div>
+                          <div style={{ fontSize: '0.785rem', color: 'var(--text-secondary)', marginTop: '0.35rem', display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+                            <span>{pageLabel} &bull; {chunkLabel}</span>
+                            {doc.duplicate_count > 1 && (
+                              <span
+                                className="badge"
+                                style={{ fontSize: '0.675rem', padding: '0.1rem 0.4rem', background: 'rgba(99, 102, 241, 0.12)', color: '#818cf8', border: '1px solid rgba(99, 102, 241, 0.25)' }}
+                                title={`${doc.duplicate_count} identical uploads consolidated into this unique document`}
+                              >
+                                🔄 {doc.duplicate_count} identical uploads
+                              </span>
+                            )}
                           </div>
                         </div>
                       </div>
 
-                      <div className="status-badges">
-                        <span className="badge badge-success">✓ Uploaded</span>
-                        {isProcessed && <span className="badge badge-success">✓ Processed</span>}
-                        {isIndexed ? (
-                          <span className="badge badge-success">✓ Indexed</span>
-                        ) : isError ? (
-                          <span className="badge badge-warning">⚠️ Needs Indexing</span>
-                        ) : (
-                          <span className="badge badge-muted">⏳ Pending</span>
-                        )}
-                      </div>
-
-                      <div className="doc-card-actions">
-                        <span className="doc-filesize">
-                          {formatFileSize(doc.file_size_bytes)}
-                        </span>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '0.85rem', paddingTop: '0.65rem', borderTop: '1px solid var(--border-subtle)' }}>
+                        <div>{statusBadge}</div>
                         <button
                           className="btn-explore"
                           onClick={() => handleExplore(doc)}
-                          title="Inspect chunks and metadata for this document"
+                          title={`Explore ${displayTitle}`}
                         >
                           Explore &rarr;
                         </button>
@@ -745,15 +768,20 @@ function App() {
               <span className="explorer-doc-icon">📄</span>
               <div>
                 <h2 className="explorer-doc-title">
-                  {explorerKnowledge?.filename || explorerStructure?.filename || explorerDoc.filename}
+                  {explorerDoc.display_title || explorerKnowledge?.filename || explorerStructure?.filename || explorerDoc.filename}
                 </h2>
-                <div className="explorer-doc-sub">
-                  Local Knowledge Document &bull; {formatFileSize(explorerDoc.file_size_bytes)}
+                <div className="explorer-doc-sub" style={{ marginTop: '0.2rem' }}>
+                  Original file: <span style={{ fontFamily: 'monospace' }}>{explorerDoc.filename}</span> &bull; {formatFileSize(explorerDoc.file_size_bytes)}
                 </div>
               </div>
             </div>
 
             <div className="explorer-badges">
+              {explorerDoc.duplicate_count > 1 && (
+                <span className="explorer-badge" style={{ background: 'rgba(99, 102, 241, 0.15)', color: '#818cf8', borderColor: 'rgba(99, 102, 241, 0.3)' }}>
+                  🔄 {explorerDoc.duplicate_count} identical uploads consolidated
+                </span>
+              )}
               <span className="explorer-badge">
                 {explorerKnowledge?.total_pages || explorerStructure?.total_pages || explorerDoc.pages} Pages
               </span>

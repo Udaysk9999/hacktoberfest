@@ -28,6 +28,9 @@ data/uploads/
 data/documents/
 data/raw/
 data/processed/
+data/processed_archive/
+data/knowledge/
+backend/data/
 temp/
 tmp/
 *.pdf

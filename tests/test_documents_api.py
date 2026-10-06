@@ -47,7 +47,8 @@ def test_upload_valid_pdf_success():
     assert data["stored_filename"].endswith(".pdf")
     assert data["pages"] == 2
     assert data["chunks"] >= 2
-    assert data["status"] == "processed"
+    # Accept both first-time upload ("processed") and dedup hit ("already_exists")
+    assert data["status"] in ("processed", "already_exists")
 
     doc_id = data["document_id"]
 

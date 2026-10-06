@@ -21,15 +21,8 @@ def compute_content_hash(content: bytes) -> str:
 def compute_content_fingerprint(doc: DocumentMetadata) -> str:
     """
     Compute a reliable content fingerprint for a document record.
-    Uses SHA-256 of raw file if present, otherwise normalized chunk texts and page count.
+    Based on normalized chunk texts, page count, and filename.
     """
-    raw_path = UPLOAD_DIR / doc.stored_filename
-    if raw_path.exists():
-        try:
-            return hashlib.sha256(raw_path.read_bytes()).hexdigest()
-        except Exception:
-            pass
-    # Grounded fallback: normalized chunk text + page count + filename
     normalized_text = " ".join(c.text.strip() for c in doc.chunks)
     return hashlib.sha256(f"{doc.pages}_{doc.filename}_{normalized_text}".encode("utf-8")).hexdigest()
 
@@ -178,8 +171,9 @@ def list_documents() -> List[DocumentMetadata]:
             if not doc.display_title:
                 doc.display_title = generate_display_title(doc.filename)
 
-            fp = doc.content_hash or compute_content_fingerprint(doc)
-            doc.content_hash = fp
+            fp = compute_content_fingerprint(doc)
+            if not doc.content_hash:
+                doc.content_hash = fp
 
             # In-memory deduplication safeguard
             if fp in seen_fingerprints:
@@ -220,23 +214,31 @@ def deduplicate_and_migrate_existing_documents() -> int:
         doc.content_hash = fp
         groups.setdefault(fp, []).append((path, doc))
 
-    from app.services.vector_store import get_vector_store
-    vs = get_vector_store()
+    from app.config import FAISS_METADATA_PATH
+    indexed_doc_ids = set()
+    if FAISS_METADATA_PATH.exists():
+        try:
+            with open(FAISS_METADATA_PATH, "r", encoding="utf-8") as f:
+                meta = json.load(f)
+            indexed_doc_ids = set(meta.get("indexed_documents", []))
+        except Exception:
+            pass
 
     removed_count = 0
     for fp, group in groups.items():
         if len(group) == 1:
             path, doc = group[0]
-            if not doc.display_title or not doc.content_hash:
+            if not doc.display_title or not doc.content_hash or getattr(doc, "duplicate_count", 1) is None:
                 doc.display_title = generate_display_title(doc.filename)
                 doc.content_hash = fp
+                doc.duplicate_count = 1
                 save_document(doc)
             continue
 
         # Select canonical record: prefer indexed in FAISS, then oldest
         canonical_idx = 0
         for idx, (path, doc) in enumerate(group):
-            if vs.is_document_indexed(doc.document_id):
+            if doc.document_id in indexed_doc_ids:
                 canonical_idx = idx
                 break
 
