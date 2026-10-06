@@ -357,7 +357,7 @@ function App() {
         <div className="header-brand">
           <div className="header-title-row">
             <div className="logo-badge">📄</div>
-            <h1 className="header-title">LocalDoc AI</h1>
+            <h1 className="header-title">LocalAI</h1>
           </div>
           <p className="header-subtitle">Private local-first document intelligence and knowledge base.</p>
         </div>
