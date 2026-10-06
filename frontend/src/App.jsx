@@ -1,8 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 
-const API_BASE = import.meta.env.VITE_API_BASE || 'http://127.0.0.1:8000';
+const DEFAULT_API_BASE = import.meta.env.VITE_API_BASE || 'http://127.0.0.1:8000';
 
 function App() {
+  const [apiBase, setApiBase] = useState(() => {
+    return localStorage.getItem('localai_api_base') || DEFAULT_API_BASE;
+  });
   const [backendOnline, setBackendOnline] = useState(false);
   const [documents, setDocuments] = useState([]);
   const [stats, setStats] = useState({
@@ -16,6 +19,13 @@ function App() {
   const [isUploading, setIsUploading] = useState(false);
   const [uploadStatusMsg, setUploadStatusMsg] = useState('');
   const [isDragActive, setIsDragActive] = useState(false);
+
+  // Offline queue and backend configuration state
+  const [queuedFile, setQueuedFile] = useState(null);
+  const [isRetryingUpload, setIsRetryingUpload] = useState(false);
+  const [showSettingsModal, setShowSettingsModal] = useState(false);
+  const [customApiUrl, setCustomApiUrl] = useState(apiBase);
+  const [apiTestStatus, setApiTestStatus] = useState(null);
 
   // Document exploration state (Step 2 & Final Sprint Knowledge Explorer)
   const [currentView, setCurrentView] = useState('dashboard'); // 'dashboard' | 'explorer'
@@ -40,37 +50,29 @@ function App() {
   const fileInputRef = useRef(null);
   const chatBottomRef = useRef(null);
 
-  // Check health, fetch documents, and fetch stats on mount
-  useEffect(() => {
-    fetchAllData();
-    const interval = setInterval(() => {
-      checkHealth();
-      fetchStats();
-    }, 15000);
-    return () => clearInterval(interval);
-  }, []);
-
-  // Auto-scroll chat to bottom
-  useEffect(() => {
-    chatBottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages, isAsking]);
-
-  const checkHealth = async () => {
+  const checkHealth = useCallback(async (overrideUrl = null) => {
+    const targetUrl = overrideUrl || apiBase;
     try {
-      const res = await fetch(`${API_BASE}/health`);
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 3500);
+      const res = await fetch(`${targetUrl}/health`, { signal: controller.signal });
+      clearTimeout(timeoutId);
       if (res.ok) {
-        setBackendOnline(true);
+        if (!overrideUrl) setBackendOnline(true);
+        return true;
       } else {
-        setBackendOnline(false);
+        if (!overrideUrl) setBackendOnline(false);
+        return false;
       }
     } catch {
-      setBackendOnline(false);
+      if (!overrideUrl) setBackendOnline(false);
+      return false;
     }
-  };
+  }, [apiBase]);
 
-  const fetchStats = async () => {
+  const fetchStats = useCallback(async () => {
     try {
-      const res = await fetch(`${API_BASE}/documents/stats`);
+      const res = await fetch(`${apiBase}/documents/stats`);
       if (res.ok) {
         const data = await res.json();
         setStats(data);
@@ -78,11 +80,11 @@ function App() {
     } catch (err) {
       console.warn('Could not fetch stats:', err);
     }
-  };
+  }, [apiBase]);
 
-  const fetchDocuments = async () => {
+  const fetchDocuments = useCallback(async () => {
     try {
-      const res = await fetch(`${API_BASE}/documents`);
+      const res = await fetch(`${apiBase}/documents`);
       if (res.ok) {
         const data = await res.json();
         setDocuments(data);
@@ -90,14 +92,40 @@ function App() {
     } catch (err) {
       console.warn('Could not fetch documents:', err);
     }
-  };
+  }, [apiBase]);
 
-  const fetchAllData = async () => {
+  const fetchAllData = useCallback(async () => {
     await Promise.all([checkHealth(), fetchDocuments(), fetchStats()]);
-  };
+  }, [checkHealth, fetchDocuments, fetchStats]);
 
-  // Upload and process PDF
-  const handleFileUpload = async (file) => {
+  // Check health, fetch documents, and fetch stats on mount & interval
+  useEffect(() => {
+    fetchAllData();
+    const interval = setInterval(async () => {
+      const isOnline = await checkHealth();
+      if (isOnline) {
+        fetchStats();
+      }
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [fetchAllData, checkHealth, fetchStats]);
+
+  // Auto-scroll chat to bottom
+  useEffect(() => {
+    chatBottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages, isAsking]);
+
+  // Auto-upload queued file when backend comes online
+  useEffect(() => {
+    if (backendOnline && queuedFile && !isUploading) {
+      const pending = queuedFile;
+      setQueuedFile(null);
+      handleFileUpload(pending, true);
+    }
+  }, [backendOnline, queuedFile, isUploading]);
+
+  // Upload and process PDF with graceful offline handling
+  const handleFileUpload = async (file, isAutoUpload = false) => {
     if (!file) return;
 
     if (!file.name.toLowerCase().endsWith('.pdf')) {
@@ -106,14 +134,24 @@ function App() {
     }
 
     setErrorMessage('');
+
+    // Pre-flight health check to avoid network failure if backend is offline
+    const isOnlineNow = await checkHealth();
+    if (!isOnlineNow) {
+      setQueuedFile(file);
+      setUploadStatusMsg('');
+      setErrorMessage(`Backend is currently offline at ${apiBase}. Document "${file.name}" is queued and will automatically upload once your local server is running.`);
+      return;
+    }
+
     setIsUploading(true);
-    setUploadStatusMsg(`Uploading & extracting "${file.name}"...`);
+    setUploadStatusMsg(isAutoUpload ? `Backend connected! Uploading "${file.name}"...` : `Uploading & extracting "${file.name}"...`);
 
     const formData = new FormData();
     formData.append('file', file);
 
     try {
-      const res = await fetch(`${API_BASE}/documents/upload`, {
+      const res = await fetch(`${apiBase}/documents/upload`, {
         method: 'POST',
         body: formData,
       });
@@ -124,6 +162,7 @@ function App() {
         throw new Error(data.detail || 'Upload failed');
       }
 
+      setQueuedFile(null);
       if (data.status === 'already_exists') {
         setUploadStatusMsg(`Document already exists in your library: "${data.display_title || data.filename}"`);
       } else {
@@ -132,12 +171,76 @@ function App() {
       await fetchAllData();
       setTimeout(() => setUploadStatusMsg(''), 4500);
     } catch (err) {
-      setErrorMessage(err.message || 'Failed to upload document');
+      const isNetworkError =
+        err.name === 'TypeError' ||
+        err.name === 'AbortError' ||
+        err.message?.toLowerCase().includes('failed to fetch') ||
+        err.message?.toLowerCase().includes('network');
+
+      if (isNetworkError) {
+        setBackendOnline(false);
+        setQueuedFile(file);
+        setErrorMessage(`Cannot reach backend at ${apiBase}. "${file.name}" is queued. Please start uvicorn (python -m uvicorn app.main:app --port 8000).`);
+      } else {
+        setErrorMessage(err.message || 'Failed to upload document');
+      }
       setUploadStatusMsg('');
     } finally {
       setIsUploading(false);
       if (fileInputRef.current) fileInputRef.current.value = '';
     }
+  };
+
+  const handleRetryUpload = async () => {
+    if (!queuedFile) return;
+    setIsRetryingUpload(true);
+    setErrorMessage('');
+    const online = await checkHealth();
+    if (online) {
+      const fileToUpload = queuedFile;
+      setQueuedFile(null);
+      await handleFileUpload(fileToUpload);
+    } else {
+      setErrorMessage(`Backend is still offline at ${apiBase}. Run 'python -m uvicorn app.main:app --port 8000' in terminal, then retry.`);
+    }
+    setIsRetryingUpload(false);
+  };
+
+  const handleTestConnection = async (testUrl) => {
+    const trimmed = (testUrl || '').trim().replace(/\/+$/, '');
+    setApiTestStatus({ testing: true, message: 'Pinging /health...' });
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 4000);
+      const res = await fetch(`${trimmed}/health`, { signal: controller.signal });
+      clearTimeout(timeoutId);
+      if (res.ok) {
+        const data = await res.json();
+        setApiTestStatus({ success: true, message: `Connected! Service: ${data.app || 'LocalAI'} (${data.status})` });
+      } else {
+        setApiTestStatus({ success: false, message: `HTTP ${res.status}: ${res.statusText}` });
+      }
+    } catch (err) {
+      const isMixedContent = window.location.protocol === 'https:' && trimmed.startsWith('http://');
+      if (isMixedContent) {
+        setApiTestStatus({
+          success: false,
+          message: 'Mixed Content Error: Browsers block HTTP localhost requests on HTTPS pages. Use an HTTPS tunnel (e.g. ngrok) or open frontend at http://localhost:5173.',
+        });
+      } else {
+        setApiTestStatus({ success: false, message: `Connection failed: ${err.message || 'Unable to connect'}` });
+      }
+    }
+  };
+
+  const handleSaveApiBase = (newUrl) => {
+    const trimmed = (newUrl || '').trim().replace(/\/+$/, '');
+    if (!trimmed) return;
+    setApiBase(trimmed);
+    localStorage.setItem('localai_api_base', trimmed);
+    setShowSettingsModal(false);
+    setApiTestStatus(null);
+    fetchAllData();
   };
 
   const handleDrop = (e) => {
@@ -163,9 +266,9 @@ function App() {
 
     try {
       const [structRes, docRes, knowRes] = await Promise.all([
-        fetch(`${API_BASE}/documents/${doc.document_id}/structure`),
-        fetch(`${API_BASE}/documents/${doc.document_id}`),
-        fetch(`${API_BASE}/documents/${doc.document_id}/knowledge`),
+        fetch(`${apiBase}/documents/${doc.document_id}/structure`),
+        fetch(`${apiBase}/documents/${doc.document_id}`),
+        fetch(`${apiBase}/documents/${doc.document_id}/knowledge`),
       ]);
 
       if (structRes.ok) {
@@ -220,7 +323,7 @@ function App() {
     if (!q || !explorerDoc) return;
     setIsSearchingDoc(true);
     try {
-      const res = await fetch(`${API_BASE}/search`, {
+      const res = await fetch(`${apiBase}/search`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -267,7 +370,7 @@ function App() {
   const handleExportMarkdown = async () => {
     if (!explorerDoc) return;
     try {
-      const res = await fetch(`${API_BASE}/documents/${explorerDoc.document_id}/knowledge/export/markdown`);
+      const res = await fetch(`${apiBase}/documents/${explorerDoc.document_id}/knowledge/export/markdown`);
       if (res.ok) {
         const data = await res.json();
         const blob = new Blob([data.markdown], { type: 'text/markdown' });
@@ -288,6 +391,11 @@ function App() {
     const q = (queryText || question).trim();
     if (!q) return;
 
+    if (!backendOnline) {
+      setErrorMessage(`Backend is offline at ${apiBase}. Please start uvicorn (python -m uvicorn app.main:app --port 8000) to ask questions.`);
+      return;
+    }
+
     setErrorMessage('');
     setQuestion('');
     setIsAsking(true);
@@ -298,7 +406,7 @@ function App() {
     }, 900);
 
     try {
-      const res = await fetch(`${API_BASE}/chat`, {
+      const res = await fetch(`${apiBase}/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ question: q }),
@@ -319,7 +427,13 @@ function App() {
         },
       ]);
     } catch (err) {
-      setErrorMessage(err.message || 'Failed to communicate with chat service');
+      const isNetwork = err.name === 'TypeError' || err.message?.toLowerCase().includes('failed to fetch');
+      if (isNetwork) {
+        setBackendOnline(false);
+        setErrorMessage(`Lost connection to backend at ${apiBase}. Please verify the server is running.`);
+      } else {
+        setErrorMessage(err.message || 'Failed to communicate with chat service');
+      }
     } finally {
       clearTimeout(timer);
       setIsAsking(false);
@@ -370,12 +484,31 @@ function App() {
           >
             <span>🔄</span> Refresh
           </button>
-          <div className={`status-pill ${backendOnline ? '' : 'offline'}`}>
+          <button
+            className={`status-pill ${backendOnline ? '' : 'offline'}`}
+            onClick={() => { setCustomApiUrl(apiBase); setApiTestStatus(null); setShowSettingsModal(true); }}
+            title="Click to view & configure Backend connection"
+            style={{ cursor: 'pointer', border: 'none', background: 'none' }}
+          >
             <span className="status-dot"></span>
             <span>{backendOnline ? '● Local AI' : '● Backend Offline'}</span>
-          </div>
+            <span style={{ fontSize: '0.75rem', opacity: 0.8, marginLeft: '4px' }}>⚙️</span>
+          </button>
         </div>
       </header>
+
+      {/* HTTPS / Mixed Content advisory banner */}
+      {typeof window !== 'undefined' && window.location.protocol === 'https:' && apiBase.startsWith('http://') && (
+        <div className="offline-notice-banner">
+          <div>
+            <strong>💡 HTTPS Notice:</strong> This web app is running over HTTPS. Web browsers block insecure HTTP calls to <code>{apiBase}</code>.
+            To use local AI, run the frontend locally at <a href="http://localhost:5173" style={{ color: '#fbbf24', textDecoration: 'underline' }}>http://localhost:5173</a> or set an HTTPS tunnel in Backend Settings.
+          </div>
+          <button className="btn btn-secondary btn-sm" onClick={() => { setCustomApiUrl(apiBase); setShowSettingsModal(true); }}>
+            ⚙️ Settings
+          </button>
+        </div>
+      )}
 
       {/* Dismissible Error Banner */}
       {errorMessage && (
@@ -488,6 +621,60 @@ function App() {
               </div>
             </div>
 
+            {/* Queued Document Card (Backend Offline) */}
+            {queuedFile && (
+              <div className="queued-upload-card" style={{ marginBottom: '0.75rem' }}>
+                <div className="queued-upload-header">
+                  <div className="queued-upload-title">
+                    <span>🔌</span>
+                    <span>Document Queued (Backend Offline)</span>
+                  </div>
+                  <span className="badge badge-warning" style={{ background: 'rgba(249, 115, 22, 0.2)', color: '#fb923c' }}>
+                    Waiting for Server
+                  </span>
+                </div>
+
+                <div className="queued-file-info">
+                  <span style={{ fontSize: '1.25rem' }}>📄</span>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div className="queued-file-name" title={queuedFile.name}>
+                      {queuedFile.name}
+                    </div>
+                    <div className="queued-file-meta">
+                      {formatFileSize(queuedFile.size)} • PDF ready to index
+                    </div>
+                  </div>
+                </div>
+
+                <p style={{ margin: 0, fontSize: '0.775rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+                  Backend server is offline at <code>{apiBase}</code>. Start uvicorn in terminal and this file will automatically upload &amp; index.
+                </p>
+
+                <div className="queued-upload-actions">
+                  <button
+                    className="btn btn-primary btn-sm"
+                    onClick={handleRetryUpload}
+                    disabled={isRetryingUpload || isUploading}
+                  >
+                    {isRetryingUpload ? 'Connecting...' : '🔄 Retry & Upload Now'}
+                  </button>
+                  <button
+                    className="btn btn-secondary btn-sm"
+                    onClick={() => { setCustomApiUrl(apiBase); setApiTestStatus(null); setShowSettingsModal(true); }}
+                  >
+                    ⚙️ Settings
+                  </button>
+                  <button
+                    className="btn btn-secondary btn-sm"
+                    onClick={() => setQueuedFile(null)}
+                    title="Remove queued file"
+                  >
+                    ✕ Cancel
+                  </button>
+                </div>
+              </div>
+            )}
+
             {/* Upload Area */}
             <div
               className={`dropzone ${isDragActive ? 'active' : ''}`}
@@ -496,11 +683,21 @@ function App() {
               onDrop={handleDrop}
               onClick={() => fileInputRef.current?.click()}
             >
-              <div className="dropzone-icon">📥</div>
+              <div className="dropzone-icon">{!backendOnline ? '🔌' : '📥'}</div>
               <p className="dropzone-text">
-                {isUploading ? 'Processing & Indexing Document...' : 'Drop a PDF here or click to upload'}
+                {isUploading
+                  ? 'Processing & Indexing Document...'
+                  : queuedFile
+                  ? `Queued: "${queuedFile.name}" (Click to choose another)`
+                  : !backendOnline
+                  ? 'Local backend offline — Drop PDF here to queue for upload'
+                  : 'Drop a PDF here or click to upload'}
               </p>
-              <span className="dropzone-hint">Supported: .pdf (Max 25MB)</span>
+              <span className="dropzone-hint">
+                {!backendOnline
+                  ? `Will auto-upload once backend starts (${apiBase})`
+                  : 'Supported: .pdf (Max 25MB)'}
+              </span>
 
               <input
                 ref={fileInputRef}
@@ -514,10 +711,16 @@ function App() {
             <button
               className="btn btn-primary"
               style={{ width: '100%' }}
-              onClick={() => fileInputRef.current?.click()}
-              disabled={isUploading}
+              onClick={() => (queuedFile ? handleRetryUpload() : fileInputRef.current?.click())}
+              disabled={isUploading || isRetryingUpload}
             >
-              {isUploading ? 'Processing Document...' : 'Upload PDF'}
+              {isUploading
+                ? 'Processing Document...'
+                : queuedFile
+                ? `🔄 Retry Upload for "${queuedFile.name}"`
+                : backendOnline
+                ? 'Upload PDF'
+                : 'Select PDF (Queue for Upload)'}
             </button>
 
             {uploadStatusMsg && (
@@ -1152,6 +1355,103 @@ function App() {
           </div>
         </div>
       ) : null}
+
+      {/* Backend Settings Modal */}
+      {showSettingsModal && (
+        <div className="modal-overlay" onClick={() => setShowSettingsModal(false)}>
+          <div className="modal-card" style={{ maxWidth: '540px' }} onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h3 className="modal-title">
+                <span>⚙️</span> Backend Connection Settings
+              </h3>
+              <button className="modal-close" onClick={() => setShowSettingsModal(false)}>✕</button>
+            </div>
+
+            <div className="modal-body" style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
+              <div>
+                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: '600', marginBottom: '0.4rem', color: 'var(--text-primary)' }}>
+                  Backend API URL:
+                </label>
+                <input
+                  type="text"
+                  className="api-settings-input"
+                  value={customApiUrl}
+                  onChange={(e) => setCustomApiUrl(e.target.value)}
+                  placeholder="http://127.0.0.1:8000"
+                />
+              </div>
+
+              <div>
+                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', display: 'block', marginBottom: '0.4rem' }}>
+                  Quick Presets:
+                </span>
+                <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                  <button
+                    type="button"
+                    className="preset-chip"
+                    onClick={() => setCustomApiUrl('http://127.0.0.1:8000')}
+                  >
+                    127.0.0.1:8000
+                  </button>
+                  <button
+                    type="button"
+                    className="preset-chip"
+                    onClick={() => setCustomApiUrl('http://localhost:8000')}
+                  >
+                    localhost:8000
+                  </button>
+                  <button
+                    type="button"
+                    className="preset-chip"
+                    onClick={() => setCustomApiUrl('http://127.0.0.1:5000')}
+                  >
+                    127.0.0.1:5000
+                  </button>
+                </div>
+              </div>
+
+              <div style={{ background: 'rgba(15, 23, 42, 0.4)', padding: '0.75rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)', fontSize: '0.8rem' }}>
+                <div style={{ fontWeight: '600', color: 'var(--text-primary)', marginBottom: '0.25rem' }}>
+                  🖥️ Start Local Backend Command:
+                </div>
+                <code style={{ display: 'block', padding: '0.4rem 0.6rem', background: '#090d16', borderRadius: '4px', color: '#6ee7b7', fontFamily: 'monospace', fontSize: '0.785rem' }}>
+                  python -m uvicorn app.main:app --port 8000
+                </code>
+              </div>
+
+              {apiTestStatus && (
+                <div style={{
+                  padding: '0.65rem 0.85rem',
+                  borderRadius: 'var(--radius-md)',
+                  fontSize: '0.8rem',
+                  background: apiTestStatus.testing ? 'rgba(99, 102, 241, 0.1)' : apiTestStatus.success ? 'rgba(16, 185, 129, 0.1)' : 'rgba(239, 68, 68, 0.1)',
+                  color: apiTestStatus.testing ? '#818cf8' : apiTestStatus.success ? '#34d399' : '#f87171',
+                  border: `1px solid ${apiTestStatus.testing ? 'rgba(99, 102, 241, 0.2)' : apiTestStatus.success ? 'rgba(16, 185, 129, 0.2)' : 'rgba(239, 68, 68, 0.2)'}`,
+                }}>
+                  {apiTestStatus.message}
+                </div>
+              )}
+
+              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.65rem', marginTop: '0.5rem' }}>
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={() => handleTestConnection(customApiUrl)}
+                >
+                  ⚡ Test Connection
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() => handleSaveApiBase(customApiUrl)}
+                >
+                  Save &amp; Connect
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
