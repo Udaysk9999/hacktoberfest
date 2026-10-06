@@ -1,0 +1,159 @@
+# ==============================================================================
+# LocalDoc AI - .gitignore
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# Secrets, Environment Variables & Credentials (CRITICAL: NEVER COMMIT)
+# ------------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.cert
+*.crt
+*.pfx
+*.p12
+*.id_rsa
+*.pub
+credentials.json
+client_secret*.json
+
+# ------------------------------------------------------------------------------
+# Private User Data & Uploaded Documents (CRITICAL: NEVER COMMIT)
+# ------------------------------------------------------------------------------
+uploads/
+**/uploads/
+data/uploads/
+data/documents/
+data/raw/
+data/processed/
+temp/
+tmp/
+*.pdf
+*.docx
+*.pptx
+# Keep documentation assets if any are placed in docs/assets/
+!docs/assets/**
+
+# ------------------------------------------------------------------------------
+# AI Models, Large Weights & Cache Files (CRITICAL: NEVER COMMIT)
+# ------------------------------------------------------------------------------
+*.gguf
+*.bin
+*.safetensors
+*.pt
+*.pth
+*.onnx
+*.h5
+*.tflite
+models/weights/
+models/checkpoints/
+models/cache/
+.cache/
+huggingface/
+ollama_data/
+
+# ------------------------------------------------------------------------------
+# Local Vector Databases & Search Indexes (CRITICAL: NEVER COMMIT)
+# ------------------------------------------------------------------------------
+*.faiss
+*.index
+*.pkl
+vector_store/
+**/vector_store/
+faiss_index/
+chroma_db/
+*.db
+*.sqlite
+*.sqlite3
+
+# ------------------------------------------------------------------------------
+# Python
+# ------------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# Testing & Coverage
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# ------------------------------------------------------------------------------
+# Node.js / Frontend
+# ------------------------------------------------------------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.pnpm-debug.log*
+dist/
+dist-ssr/
+*.local
+.next/
+out/
+.nuxt/
+.vuepress/dist/
+
+# ------------------------------------------------------------------------------
+# IDE & System Files
+# ------------------------------------------------------------------------------
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+[Dd]esktop.ini
+
+# Logs & Temporary Files
+*.log
+*.tmp
+*.temp
+*.bak
