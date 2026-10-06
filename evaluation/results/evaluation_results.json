@@ -1,0 +1,475 @@
+{
+  "timestamp": "2026-10-06 14:02:07",
+  "total_questions": 21,
+  "answerable_questions": 11,
+  "unanswerable_questions": 10,
+  "correctly_answered_questions": 11,
+  "correctly_refused_questions": 10,
+  "citation_presence_count": 11,
+  "correct_citations_count": 11,
+  "refusal_accuracy_pct": 100.0,
+  "citation_accuracy_pct": 100.0,
+  "answer_accuracy_pct": 100.0,
+  "latency_stats": {
+    "average_seconds": 11.889,
+    "min_seconds": 0.056,
+    "max_seconds": 41.203
+  },
+  "model_info": {
+    "llm": "gemma4:e2b-it-q4_K_M",
+    "runtime": "Ollama (local)",
+    "embeddings": "sentence-transformers/all-MiniLM-L6-v2",
+    "vector_store": "FAISS (IndexFlatIP)"
+  },
+  "details": [
+    {
+      "id": 1,
+      "question": "What is the minimum attendance requirement for students?",
+      "expected_answerable": true,
+      "expected_source": "College_Handbook_2026.pdf",
+      "expected_page": 1,
+      "response": "All registered undergraduate and graduate students must maintain a minimum attendance of 75% across all scheduled lectures, tutorials, and laboratory sessions for each registered course.",
+      "sources": [
+        {
+          "document": "College_Handbook_2026.pdf",
+          "page": 1
+        },
+        {
+          "document": "College_Handbook.pdf",
+          "page": 1
+        },
+        {
+          "document": "Academic_Rules.pdf",
+          "page": 1
+        },
+        {
+          "document": "College_Handbook.pdf",
+          "page": 2
+        }
+      ],
+      "latency_seconds": 41.203,
+      "sources_returned": true,
+      "system_refused": false,
+      "correct_answer_flag": true,
+      "correct_citation_flag": true
+    },
+    {
+      "id": 2,
+      "question": "What happens if a student fails to meet the 75% attendance threshold?",
+      "expected_answerable": true,
+      "expected_source": "College_Handbook_2026.pdf",
+      "expected_page": 1,
+      "response": "Failure to meet the mandatory 75% attendance threshold without prior Dean approval will result in automatic debarment from taking the semester-end final examinations.",
+      "sources": [
+        {
+          "document": "College_Handbook_2026.pdf",
+          "page": 1
+        },
+        {
+          "document": "College_Handbook.pdf",
+          "page": 1
+        },
+        {
+          "document": "College_Handbook_2026.pdf",
+          "page": 2
+        },
+        {
+          "document": "Academic_Rules.pdf",
+          "page": 1
+        }
+      ],
+      "latency_seconds": 13.004,
+      "sources_returned": true,
+      "system_refused": false,
+      "correct_answer_flag": true,
+      "correct_citation_flag": true
+    },
+    {
+      "id": 3,
+      "question": "When is a medical certificate required for student absences?",
+      "expected_answerable": true,
+      "expected_source": "College_Handbook_2026.pdf",
+      "expected_page": 1,
+      "response": "Absences exceeding three consecutive days due to illness require a valid medical certificate issued by a registered physician.",
+      "sources": [
+        {
+          "document": "College_Handbook_2026.pdf",
+          "page": 1
+        },
+        {
+          "document": "College_Handbook.pdf",
+          "page": 2
+        },
+        {
+          "document": "Academic_Rules.pdf",
+          "page": 1
+        }
+      ],
+      "latency_seconds": 24.674,
+      "sources_returned": true,
+      "system_refused": false,
+      "correct_answer_flag": true,
+      "correct_citation_flag": true
+    },
+    {
+      "id": 4,
+      "question": "How many days does a student have to submit a medical certificate upon returning to campus?",
+      "expected_answerable": true,
+      "expected_source": "College_Handbook_2026.pdf",
+      "expected_page": 1,
+      "response": "A valid medical certificate must be submitted to the Academic Registrar within 5 business days of returning to campus.",
+      "sources": [
+        {
+          "document": "College_Handbook_2026.pdf",
+          "page": 1
+        },
+        {
+          "document": "College_Handbook.pdf",
+          "page": 1
+        },
+        {
+          "document": "Academic_Rules.pdf",
+          "page": 1
+        }
+      ],
+      "latency_seconds": 11.245,
+      "sources_returned": true,
+      "system_refused": false,
+      "correct_answer_flag": true,
+      "correct_citation_flag": true
+    },
+    {
+      "id": 5,
+      "question": "What percentage is required to receive an A+ grade?",
+      "expected_answerable": true,
+      "expected_source": "College_Handbook_2026.pdf",
+      "expected_page": 2,
+      "response": "95% - 100%",
+      "sources": [
+        {
+          "document": "Academic_Rules.pdf",
+          "page": 1
+        },
+        {
+          "document": "College_Handbook.pdf",
+          "page": 1
+        },
+        {
+          "document": "College_Handbook_2026.pdf",
+          "page": 2
+        }
+      ],
+      "latency_seconds": 7.825,
+      "sources_returned": true,
+      "system_refused": false,
+      "correct_answer_flag": true,
+      "correct_citation_flag": true
+    },
+    {
+      "id": 6,
+      "question": "What percentage score corresponds to a course failure or Grade F?",
+      "expected_answerable": true,
+      "expected_source": "College_Handbook_2026.pdf",
+      "expected_page": 2,
+      "response": "A Grade F (Unsatisfactory / Course Failure) corresponds to a score below 55%.",
+      "sources": [
+        {
+          "document": "College_Handbook_2026.pdf",
+          "page": 2
+        },
+        {
+          "document": "Academic_Rules.pdf",
+          "page": 1
+        },
+        {
+          "document": "College_Handbook.pdf",
+          "page": 2
+        }
+      ],
+      "latency_seconds": 8.455,
+      "sources_returned": true,
+      "system_refused": false,
+      "correct_answer_flag": true,
+      "correct_citation_flag": true
+    },
+    {
+      "id": 7,
+      "question": "What is the minimum CGPA required for degree conferral?",
+      "expected_answerable": true,
+      "expected_source": "College_Handbook_2026.pdf",
+      "expected_page": 2,
+      "response": "A minimum Cumulative Grade Point Average (CGPA) of 6.0 is required for degree conferral.",
+      "sources": [
+        {
+          "document": "College_Handbook_2026.pdf",
+          "page": 2
+        },
+        {
+          "document": "Academic_Rules.pdf",
+          "page": 1
+        },
+        {
+          "document": "College_Handbook.pdf",
+          "page": 1
+        },
+        {
+          "document": "College_Handbook_2026.pdf",
+          "page": 1
+        }
+      ],
+      "latency_seconds": 9.89,
+      "sources_returned": true,
+      "system_refused": false,
+      "correct_answer_flag": true,
+      "correct_citation_flag": true
+    },
+    {
+      "id": 8,
+      "question": "What are the library operating hours on weekdays?",
+      "expected_answerable": true,
+      "expected_source": "College_Handbook_2026.pdf",
+      "expected_page": 3,
+      "response": "The Central University Library operates from 8:00 AM to 11:00 PM on weekdays.",
+      "sources": [
+        {
+          "document": "College_Handbook_2026.pdf",
+          "page": 3
+        },
+        {
+          "document": "College_Handbook.pdf",
+          "page": 1
+        }
+      ],
+      "latency_seconds": 7.886,
+      "sources_returned": true,
+      "system_refused": false,
+      "correct_answer_flag": true,
+      "correct_citation_flag": true
+    },
+    {
+      "id": 9,
+      "question": "How many books can an undergraduate student check out and for how long?",
+      "expected_answerable": true,
+      "expected_source": "College_Handbook_2026.pdf",
+      "expected_page": 3,
+      "response": "Undergraduate students may check out up to 5 books for a duration of 14 days.",
+      "sources": [
+        {
+          "document": "College_Handbook.pdf",
+          "page": 1
+        },
+        {
+          "document": "College_Handbook_2026.pdf",
+          "page": 3
+        },
+        {
+          "document": "College_Handbook_2026.pdf",
+          "page": 1
+        },
+        {
+          "document": "Academic_Rules.pdf",
+          "page": 1
+        }
+      ],
+      "latency_seconds": 13.348,
+      "sources_returned": true,
+      "system_refused": false,
+      "correct_answer_flag": true,
+      "correct_citation_flag": true
+    },
+    {
+      "id": 10,
+      "question": "What is the overdue fine per day for library materials?",
+      "expected_answerable": true,
+      "expected_source": "College_Handbook_2026.pdf",
+      "expected_page": 3,
+      "response": "Overdue materials incur a fine of .50 per day per volume.",
+      "sources": [
+        {
+          "document": "College_Handbook_2026.pdf",
+          "page": 3
+        },
+        {
+          "document": "College_Handbook.pdf",
+          "page": 2
+        },
+        {
+          "document": "College_Handbook_2026.pdf",
+          "page": 1
+        },
+        {
+          "document": "Academic_Rules.pdf",
+          "page": 1
+        }
+      ],
+      "latency_seconds": 9.296,
+      "sources_returned": true,
+      "system_refused": false,
+      "correct_answer_flag": true,
+      "correct_citation_flag": true
+    },
+    {
+      "id": 11,
+      "question": "Where are the designated quiet zones located in the library?",
+      "expected_answerable": true,
+      "expected_source": "College_Handbook_2026.pdf",
+      "expected_page": 3,
+      "response": "Designated quiet zones are on the third and fourth floors.",
+      "sources": [
+        {
+          "document": "College_Handbook_2026.pdf",
+          "page": 3
+        },
+        {
+          "document": "College_Handbook.pdf",
+          "page": 1
+        }
+      ],
+      "latency_seconds": 9.674,
+      "sources_returned": true,
+      "system_refused": false,
+      "correct_answer_flag": true,
+      "correct_citation_flag": true
+    },
+    {
+      "id": 12,
+      "question": "What is the policy for flying commercial drones in the campus football stadium?",
+      "expected_answerable": false,
+      "expected_source": null,
+      "expected_page": null,
+      "response": "I couldn't find sufficient evidence for this answer in the uploaded documents.",
+      "sources": [],
+      "latency_seconds": 0.056,
+      "sources_returned": false,
+      "system_refused": true,
+      "correct_answer_flag": true,
+      "correct_citation_flag": false
+    },
+    {
+      "id": 13,
+      "question": "What is the Wi-Fi password for the freshman dormitory?",
+      "expected_answerable": false,
+      "expected_source": null,
+      "expected_page": null,
+      "response": "I couldn't find sufficient evidence for this answer in the uploaded documents.",
+      "sources": [],
+      "latency_seconds": 10.304,
+      "sources_returned": false,
+      "system_refused": true,
+      "correct_answer_flag": true,
+      "correct_citation_flag": false
+    },
+    {
+      "id": 14,
+      "question": "How much does a student semester parking permit cost?",
+      "expected_answerable": false,
+      "expected_source": null,
+      "expected_page": null,
+      "response": "I couldn't find sufficient evidence for this answer in the uploaded documents.",
+      "sources": [],
+      "latency_seconds": 9.773,
+      "sources_returned": false,
+      "system_refused": true,
+      "correct_answer_flag": true,
+      "correct_citation_flag": false
+    },
+    {
+      "id": 15,
+      "question": "What are the weekend operating hours of the campus recreation swimming pool?",
+      "expected_answerable": false,
+      "expected_source": null,
+      "expected_page": null,
+      "response": "I couldn't find sufficient evidence for this answer in the uploaded documents.",
+      "sources": [],
+      "latency_seconds": 10.321,
+      "sources_returned": false,
+      "system_refused": true,
+      "correct_answer_flag": true,
+      "correct_citation_flag": false
+    },
+    {
+      "id": 16,
+      "question": "Which campus dining hall serves vegan pizza on Tuesday evenings?",
+      "expected_answerable": false,
+      "expected_source": null,
+      "expected_page": null,
+      "response": "I couldn't find sufficient evidence for this answer in the uploaded documents.",
+      "sources": [],
+      "latency_seconds": 9.934,
+      "sources_returned": false,
+      "system_refused": true,
+      "correct_answer_flag": true,
+      "correct_citation_flag": false
+    },
+    {
+      "id": 17,
+      "question": "What is the minimum TOEFL iBT score required for study abroad exchange applicants?",
+      "expected_answerable": false,
+      "expected_source": null,
+      "expected_page": null,
+      "response": "I couldn't find sufficient evidence for this answer in the uploaded documents.",
+      "sources": [],
+      "latency_seconds": 10.6,
+      "sources_returned": false,
+      "system_refused": true,
+      "correct_answer_flag": true,
+      "correct_citation_flag": false
+    },
+    {
+      "id": 18,
+      "question": "How do students register as candidates for student union president elections?",
+      "expected_answerable": false,
+      "expected_source": null,
+      "expected_page": null,
+      "response": "I couldn't find sufficient evidence for this answer in the uploaded documents.",
+      "sources": [],
+      "latency_seconds": 8.082,
+      "sources_returned": false,
+      "system_refused": true,
+      "correct_answer_flag": true,
+      "correct_citation_flag": false
+    },
+    {
+      "id": 19,
+      "question": "What is the departure schedule for the shuttle bus between North and South campus?",
+      "expected_answerable": false,
+      "expected_source": null,
+      "expected_page": null,
+      "response": "I couldn't find sufficient evidence for this answer in the uploaded documents.",
+      "sources": [],
+      "latency_seconds": 8.813,
+      "sources_returned": false,
+      "system_refused": true,
+      "correct_answer_flag": true,
+      "correct_citation_flag": false
+    },
+    {
+      "id": 20,
+      "question": "How can a graduate student request a single room in graduate student housing?",
+      "expected_answerable": false,
+      "expected_source": null,
+      "expected_page": null,
+      "response": "I couldn't find sufficient evidence for this answer in the uploaded documents.",
+      "sources": [],
+      "latency_seconds": 9.334,
+      "sources_returned": false,
+      "system_refused": true,
+      "correct_answer_flag": true,
+      "correct_citation_flag": false
+    },
+    {
+      "id": 21,
+      "question": "What is the annual gym membership price for university alumni?",
+      "expected_answerable": false,
+      "expected_source": null,
+      "expected_page": null,
+      "response": "I couldn't find sufficient evidence for this answer in the uploaded documents.",
+      "sources": [],
+      "latency_seconds": 15.952,
+      "sources_returned": false,
+      "system_refused": true,
+      "correct_answer_flag": true,
+      "correct_citation_flag": false
+    }
+  ]
+}

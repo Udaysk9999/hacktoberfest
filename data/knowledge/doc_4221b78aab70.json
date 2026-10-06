@@ -1,0 +1,250 @@
+{
+  "document_id": "doc_4221b78aab70",
+  "filename": "Outline_20260927_101746_0000.pdf.pdf",
+  "total_pages": 10,
+  "overview": "Official institutional document 'Outline_20260927_101746_0000.pdf.pdf' spanning 10 pages and 14 knowledge chunks. Covers verified policies including Rules & Regulations.",
+  "categories": [
+    {
+      "category_id": "rules",
+      "name": "Rules & Regulations",
+      "icon": "⚖️",
+      "topics": [
+        {
+          "name": "A",
+          "source_section": "A",
+          "start_page": 1,
+          "end_page": 1
+        },
+        {
+          "name": "Seminar Presentation on",
+          "source_section": "Seminar Presentation on",
+          "start_page": 1,
+          "end_page": 1
+        },
+        {
+          "name": "THE ROLE OF AI IN MILITARY CYBER",
+          "source_section": "THE ROLE OF AI IN MILITARY CYBER",
+          "start_page": 1,
+          "end_page": 1
+        },
+        {
+          "name": "SECURITY",
+          "source_section": "SECURITY",
+          "start_page": 1,
+          "end_page": 1
+        },
+        {
+          "name": "Presented by",
+          "source_section": "Presented by",
+          "start_page": 1,
+          "end_page": 1
+        },
+        {
+          "name": "Uday Sandip Khode",
+          "source_section": "Uday Sandip Khode",
+          "start_page": 1,
+          "end_page": 1
+        },
+        {
+          "name": "Under the Guidance of",
+          "source_section": "Under the Guidance of",
+          "start_page": 1,
+          "end_page": 1
+        },
+        {
+          "name": "Prof.P.B.Rajole",
+          "source_section": "Prof.P.B.Rajole",
+          "start_page": 1,
+          "end_page": 1
+        },
+        {
+          "name": "Department of Computer Engineering",
+          "source_section": "Department of Computer Engineering",
+          "start_page": 1,
+          "end_page": 1
+        },
+        {
+          "name": "Outline",
+          "source_section": "Outline",
+          "start_page": 2,
+          "end_page": 2
+        },
+        {
+          "name": "Introduction",
+          "source_section": "Introduction",
+          "start_page": 3,
+          "end_page": 3
+        },
+        {
+          "name": "Literature Survey",
+          "source_section": "Literature Survey",
+          "start_page": 4,
+          "end_page": 4
+        },
+        {
+          "name": "Researcher ’s Name / Year",
+          "source_section": "Researcher ’s Name / Year",
+          "start_page": 4,
+          "end_page": 4
+        },
+        {
+          "name": "Technique/Algorithm",
+          "source_section": "Technique/Algorithm",
+          "start_page": 4,
+          "end_page": 4
+        },
+        {
+          "name": "Drawback/Future scope",
+          "source_section": "Drawback/Future scope",
+          "start_page": 4,
+          "end_page": 4
+        },
+        {
+          "name": "Ahsan et al. (2026)",
+          "source_section": "Ahsan et al. (2026)",
+          "start_page": 4,
+          "end_page": 4
+        },
+        {
+          "name": "BERT + GIS Encoder + Attention Fusion",
+          "source_section": "BERT + GIS Encoder + Attention Fusion",
+          "start_page": 4,
+          "end_page": 4
+        },
+        {
+          "name": "Does not explicitly consider emergency resource availability",
+          "source_section": "Does not explicitly consider emergency resource availability",
+          "start_page": 4,
+          "end_page": 4
+        },
+        {
+          "name": "GCN + Temporal Fusion Transformer",
+          "source_section": "GCN + Temporal Fusion Transformer",
+          "start_page": 4,
+          "end_page": 4
+        },
+        {
+          "name": "Chaimook et al. (2025)",
+          "source_section": "Chaimook et al. (2025)",
+          "start_page": 4,
+          "end_page": 4
+        },
+        {
+          "name": "Focuses mainly on flood hazard classification",
+          "source_section": "Focuses mainly on flood hazard classification",
+          "start_page": 4,
+          "end_page": 4
+        },
+        {
+          "name": "Gao et al. (2025)",
+          "source_section": "Gao et al. (2025)",
+          "start_page": 4,
+          "end_page": 4
+        },
+        {
+          "name": "Bayesian Network + Improved A*",
+          "source_section": "Bayesian Network + Improved A*",
+          "start_page": 4,
+          "end_page": 4
+        },
+        {
+          "name": "Focuses on landslide risk and safe routes",
+          "source_section": "Focuses on landslide risk and safe routes",
+          "start_page": 4,
+          "end_page": 4
+        },
+        {
+          "name": "Bu et al. (2025)",
+          "source_section": "Bu et al. (2025)",
+          "start_page": 4,
+          "end_page": 4
+        },
+        {
+          "name": "Multisensor Data Fusion",
+          "source_section": "Multisensor Data Fusion",
+          "start_page": 4,
+          "end_page": 4
+        },
+        {
+          "name": "Focuses on agricultural fire and environmental impacts",
+          "source_section": "Focuses on agricultural fire and environmental impacts",
+          "start_page": 4,
+          "end_page": 4
+        },
+        {
+          "name": "Mas et al. (2024)",
+          "source_section": "Mas et al. (2024)",
+          "start_page": 4,
+          "end_page": 4
+        },
+        {
+          "name": "Reinforcement Learning",
+          "source_section": "Reinforcement Learning",
+          "start_page": 4,
+          "end_page": 4
+        },
+        {
+          "name": "Focuses on tsunami evacuation guidance, not resource allocation",
+          "source_section": "Focuses on tsunami evacuation guidance, not resource allocation",
+          "start_page": 4,
+          "end_page": 4
+        },
+        {
+          "name": "Problem Definition",
+          "source_section": "Problem Definition",
+          "start_page": 5,
+          "end_page": 5
+        },
+        {
+          "name": "System Architecture",
+          "source_section": "System Architecture",
+          "start_page": 6,
+          "end_page": 6
+        },
+        {
+          "name": "Algorithm",
+          "source_section": "Algorithm",
+          "start_page": 7,
+          "end_page": 7
+        },
+        {
+          "name": "Advantages and Application",
+          "source_section": "Advantages and Application",
+          "start_page": 8,
+          "end_page": 8
+        },
+        {
+          "name": "ADVANTAGES",
+          "source_section": "ADVANTAGES",
+          "start_page": 8,
+          "end_page": 8
+        },
+        {
+          "name": "APPLICATIONS",
+          "source_section": "APPLICATIONS",
+          "start_page": 8,
+          "end_page": 8
+        },
+        {
+          "name": "Conclusion",
+          "source_section": "Conclusion",
+          "start_page": 9,
+          "end_page": 9
+        },
+        {
+          "name": "References",
+          "source_section": "References",
+          "start_page": 10,
+          "end_page": 10
+        }
+      ]
+    }
+  ],
+  "key_information": [],
+  "suggested_questions": [
+    {
+      "category": "Rules & Regulations",
+      "question": "What is the student code of conduct and disciplinary policy?"
+    }
+  ]
+}

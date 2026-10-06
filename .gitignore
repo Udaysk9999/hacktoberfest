@@ -63,6 +63,10 @@ ollama_data/
 vector_store/
 **/vector_store/
 faiss_index/
+data/faiss/
+data/metadata/
+**/data/faiss/
+**/data/metadata/
 chroma_db/
 *.db
 *.sqlite

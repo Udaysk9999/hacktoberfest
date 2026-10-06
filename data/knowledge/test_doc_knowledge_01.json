@@ -1,0 +1,103 @@
+{
+  "document_id": "test_doc_knowledge_01",
+  "filename": "Test_Academic_Handbook.pdf",
+  "total_pages": 5,
+  "overview": "Official institutional document 'Test_Academic_Handbook.pdf' spanning 5 pages and 3 knowledge chunks. Covers verified policies including Academic, Student Services, Attendance.",
+  "categories": [
+    {
+      "category_id": "academic",
+      "name": "Academic",
+      "icon": "🎓",
+      "topics": [
+        {
+          "name": "Academic Guidelines",
+          "source_section": null,
+          "start_page": 1,
+          "end_page": 1
+        }
+      ]
+    },
+    {
+      "category_id": "student_services",
+      "name": "Student Services",
+      "icon": "👨‍🎓",
+      "topics": [
+        {
+          "name": "Student Services Guidelines",
+          "source_section": null,
+          "start_page": 3,
+          "end_page": 3
+        }
+      ]
+    },
+    {
+      "category_id": "attendance",
+      "name": "Attendance",
+      "icon": "📋",
+      "topics": [
+        {
+          "name": "Attendance Requirement",
+          "source_section": null,
+          "start_page": 1,
+          "end_page": 1
+        }
+      ]
+    }
+  ],
+  "key_information": [
+    {
+      "title": "Attendance Requirement",
+      "value": "75% minimum attendance requirement",
+      "source_page": 1,
+      "source_section": null,
+      "source_document": "Test_Academic_Handbook.pdf"
+    },
+    {
+      "title": "Minimum Passing Grade",
+      "value": "for undergraduate degree courses is C minus",
+      "source_page": 2,
+      "source_section": null,
+      "source_document": "Test_Academic_Handbook.pdf"
+    },
+    {
+      "title": "CGPA Calculation",
+      "value": "Calculated as cumulative weighted grade points divided by total credits earned",
+      "source_page": 2,
+      "source_section": null,
+      "source_document": "Test_Academic_Handbook.pdf"
+    },
+    {
+      "title": "Library Borrowing Limit",
+      "value": "5 books",
+      "source_page": 3,
+      "source_section": null,
+      "source_document": "Test_Academic_Handbook.pdf"
+    }
+  ],
+  "suggested_questions": [
+    {
+      "category": "Academic",
+      "question": "What is the minimum passing grade for courses?"
+    },
+    {
+      "category": "Academic",
+      "question": "How are grades and CGPA calculated?"
+    },
+    {
+      "category": "Student Services",
+      "question": "What are the library borrowing rules and checkout limits?"
+    },
+    {
+      "category": "Student Services",
+      "question": "What student healthcare and counseling services are available?"
+    },
+    {
+      "category": "Attendance",
+      "question": "What is the minimum attendance requirement for students?"
+    },
+    {
+      "category": "Attendance",
+      "question": "What are the rules regarding leave of absence and attendance shortage?"
+    }
+  ]
+}

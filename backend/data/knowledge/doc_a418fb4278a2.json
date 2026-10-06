@@ -1,0 +1,119 @@
+{
+  "document_id": "doc_a418fb4278a2",
+  "filename": "Handbook2020-2021.pdf",
+  "total_pages": 51,
+  "overview": "Official institutional document 'Handbook2020-2021.pdf' spanning 51 pages and 172 knowledge chunks. Covers verified policies including Rules & Regulations, Fees & Finance, Hostel, Attendance.",
+  "categories": [
+    {
+      "category_id": "rules",
+      "name": "Rules & Regulations",
+      "icon": "⚖️",
+      "topics": [
+        {
+          "name": "Section 4: Whoever commits, participates in, abets or propagates “ragging” within or",
+          "source_section": "Section 4: Whoever commits, participates in, abets or propagates “ragging” within or",
+          "start_page": 17,
+          "end_page": 17
+        },
+        {
+          "name": "Section 5: Any student convicted of an oﬀence under section 4 shall also be dismissed",
+          "source_section": "Section 5: Any student convicted of an oﬀence under section 4 shall also be dismissed",
+          "start_page": 17,
+          "end_page": 51
+        }
+      ]
+    },
+    {
+      "category_id": "fees",
+      "name": "Fees & Finance",
+      "icon": "💰",
+      "topics": [
+        {
+          "name": "Fee Concessions & Aid",
+          "source_section": null,
+          "start_page": 4,
+          "end_page": 4
+        }
+      ]
+    },
+    {
+      "category_id": "hostel",
+      "name": "Hostel",
+      "icon": "🏠",
+      "topics": [
+        {
+          "name": "Hostel Administration",
+          "source_section": null,
+          "start_page": 11,
+          "end_page": 11
+        }
+      ]
+    },
+    {
+      "category_id": "attendance",
+      "name": "Attendance",
+      "icon": "📋",
+      "topics": [
+        {
+          "name": "Attendance Requirement",
+          "source_section": null,
+          "start_page": 39,
+          "end_page": 39
+        }
+      ]
+    }
+  ],
+  "key_information": [
+    {
+      "title": "Fee Concessions & Aid",
+      "value": "Educational fee concessions and scholarship schemes available for eligible students",
+      "source_page": 4,
+      "source_section": null,
+      "source_document": "Handbook2020-2021.pdf"
+    },
+    {
+      "title": "Hostel Administration",
+      "value": "Hostel operations overseen by Chief Warden with mandatory mess and residency regulations",
+      "source_page": 11,
+      "source_section": null,
+      "source_document": "Handbook2020-2021.pdf"
+    },
+    {
+      "title": "Attendance Requirement",
+      "value": "80% minimum attendance requirement",
+      "source_page": 39,
+      "source_section": null,
+      "source_document": "Handbook2020-2021.pdf"
+    }
+  ],
+  "suggested_questions": [
+    {
+      "category": "Rules & Regulations",
+      "question": "What is the student code of conduct and disciplinary policy?"
+    },
+    {
+      "category": "Fees & Finance",
+      "question": "What are the fee payment rules and schedule?"
+    },
+    {
+      "category": "Fees & Finance",
+      "question": "What is the policy on fee refunds and deposits?"
+    },
+    {
+      "category": "Hostel",
+      "question": "What are the rules and guidelines for hostel residents?"
+    },
+    {
+      "category": "Hostel",
+      "question": "What are the hostel charges and mess facilities?"
+    },
+    {
+      "category": "Attendance",
+      "question": "What is the minimum attendance requirement for students?"
+    },
+    {
+      "category": "Attendance",
+      "question": "What are the rules regarding leave of absence and attendance shortage?"
+    }
+  ]
+}

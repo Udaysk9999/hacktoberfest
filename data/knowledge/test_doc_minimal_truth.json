@@ -1,0 +1,40 @@
+{
+  "document_id": "test_doc_minimal_truth",
+  "filename": "Academic_Rules.pdf",
+  "total_pages": 1,
+  "overview": "Official institutional document 'Academic_Rules.pdf' spanning 1 pages and 1 knowledge chunks. Covers verified policies including Academic.",
+  "categories": [
+    {
+      "category_id": "academic",
+      "name": "Academic",
+      "icon": "🎓",
+      "topics": [
+        {
+          "name": "Academic Guidelines",
+          "source_section": null,
+          "start_page": 1,
+          "end_page": 1
+        }
+      ]
+    }
+  ],
+  "key_information": [
+    {
+      "title": "Minimum Passing Grade",
+      "value": "for undergraduate courses is C minus",
+      "source_page": 1,
+      "source_section": null,
+      "source_document": "Academic_Rules.pdf"
+    }
+  ],
+  "suggested_questions": [
+    {
+      "category": "Academic",
+      "question": "What is the minimum passing grade for courses?"
+    },
+    {
+      "category": "Academic",
+      "question": "How are grades and CGPA calculated?"
+    }
+  ]
+}

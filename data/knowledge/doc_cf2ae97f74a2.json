@@ -1,0 +1,61 @@
+{
+  "document_id": "doc_cf2ae97f74a2",
+  "filename": "College_Handbook.pdf",
+  "total_pages": 2,
+  "overview": "Official institutional document 'College_Handbook.pdf' spanning 2 pages and 2 knowledge chunks. Covers verified policies including Attendance, Academic.",
+  "categories": [
+    {
+      "category_id": "attendance",
+      "name": "Attendance",
+      "icon": "📋",
+      "topics": [
+        {
+          "name": "Attendance Guidelines",
+          "source_section": null,
+          "start_page": 1,
+          "end_page": 1
+        }
+      ]
+    },
+    {
+      "category_id": "academic",
+      "name": "Academic",
+      "icon": "🎓",
+      "topics": [
+        {
+          "name": "Academic Guidelines",
+          "source_section": null,
+          "start_page": 2,
+          "end_page": 2
+        }
+      ]
+    }
+  ],
+  "key_information": [
+    {
+      "title": "Attendance Requirement",
+      "value": "75% minimum attendance requirement",
+      "source_page": 1,
+      "source_section": null,
+      "source_document": "College_Handbook.pdf"
+    }
+  ],
+  "suggested_questions": [
+    {
+      "category": "Attendance",
+      "question": "What is the minimum attendance requirement for students?"
+    },
+    {
+      "category": "Attendance",
+      "question": "What are the rules regarding leave of absence and attendance shortage?"
+    },
+    {
+      "category": "Academic",
+      "question": "What is the minimum passing grade for courses?"
+    },
+    {
+      "category": "Academic",
+      "question": "How are grades and CGPA calculated?"
+    }
+  ]
+}

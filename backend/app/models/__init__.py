@@ -5,10 +5,30 @@ from app.models.document import (
     DocumentUploadResponse,
     DocumentMetadata,
 )
+from app.models.chat import (
+    ChatRequest,
+    ChatResponse,
+    SourceCitation,
+)
+from app.models.search import (
+    SearchRequest,
+    SearchResult,
+    SearchResponse,
+    IndexRequest,
+    IndexResponse,
+)
 
 __all__ = [
     "PageExtraction",
     "Chunk",
     "DocumentUploadResponse",
     "DocumentMetadata",
+    "SearchRequest",
+    "SearchResult",
+    "SearchResponse",
+    "IndexRequest",
+    "IndexResponse",
+    "ChatRequest",
+    "ChatResponse",
+    "SourceCitation",
 ]

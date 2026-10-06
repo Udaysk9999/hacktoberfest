@@ -1,0 +1,257 @@
+{
+  "document_id": "doc_6dcb466dffb9",
+  "filename": "handbookfinalversion.pdf",
+  "total_pages": 191,
+  "overview": "Official institutional document 'handbookfinalversion.pdf' spanning 191 pages and 858 knowledge chunks. Covers verified policies including Rules & Regulations, Academic, Scholarships & Concessions, Hostel.",
+  "categories": [
+    {
+      "category_id": "rules",
+      "name": "Rules & Regulations",
+      "icon": "⚖️",
+      "topics": [
+        {
+          "name": "CHAPTER- 1 1.1",
+          "source_section": "CHAPTER- 1 1.1",
+          "start_page": 22,
+          "end_page": 25
+        },
+        {
+          "name": "CHAPTER- 2 DELEGATION OF POWERS TO THE OFFICERS OF THE DIRECTORATE",
+          "source_section": "CHAPTER- 2 DELEGATION OF POWERS TO THE OFFICERS OF THE DIRECTORATE",
+          "start_page": 26,
+          "end_page": 38
+        },
+        {
+          "name": "CHAPTER - 3 List of various services and documents to be submitted in the",
+          "source_section": "CHAPTER - 3 List of various services and documents to be submitted in the",
+          "start_page": 39,
+          "end_page": 47
+        },
+        {
+          "name": "CHAPTER – 4 KERALA PRIVATE COLLEGE STAFF PROVIDENT FUND",
+          "source_section": "CHAPTER – 4 KERALA PRIVATE COLLEGE STAFF PROVIDENT FUND",
+          "start_page": 48,
+          "end_page": 50
+        },
+        {
+          "name": "CHAPTER-5 Pension (Kerala Private Aided & Govt. Colleges)",
+          "source_section": "CHAPTER-5 Pension (Kerala Private Aided & Govt. Colleges)",
+          "start_page": 51,
+          "end_page": 53
+        },
+        {
+          "name": "CHAPTER - 6 POWERS AND FUNCTIONS OF THE REGIONAL DEPUTY DIRECTORATES",
+          "source_section": "CHAPTER - 6 POWERS AND FUNCTIONS OF THE REGIONAL DEPUTY DIRECTORATES",
+          "start_page": 54,
+          "end_page": 58
+        },
+        {
+          "name": "CHAPTER - 7 7.1",
+          "source_section": "CHAPTER - 7 7.1",
+          "start_page": 59,
+          "end_page": 64
+        },
+        {
+          "name": "CHAPTER - 8 Submission of Pension Papers (Aided College Staff)",
+          "source_section": "CHAPTER - 8 Submission of Pension Papers (Aided College Staff)",
+          "start_page": 65,
+          "end_page": 66
+        },
+        {
+          "name": "CHAPTER - 9 Auditing in private aided colleges",
+          "source_section": "CHAPTER - 9 Auditing in private aided colleges",
+          "start_page": 67,
+          "end_page": 67
+        },
+        {
+          "name": "CHAPTER - 10 PD RULES (For Private Aided Colleges)",
+          "source_section": "CHAPTER - 10 PD RULES (For Private Aided Colleges)",
+          "start_page": 68,
+          "end_page": 68
+        },
+        {
+          "name": "CHAPTER – 11 VARIOUS SERVICES OF REGIONAL DIRECTORATE",
+          "source_section": "CHAPTER – 11 VARIOUS SERVICES OF REGIONAL DIRECTORATE",
+          "start_page": 69,
+          "end_page": 74
+        },
+        {
+          "name": "CHAPTER- 12 Functions, Duties & Responsibilities of Officers",
+          "source_section": "CHAPTER- 12 Functions, Duties & Responsibilities of Officers",
+          "start_page": 75,
+          "end_page": 83
+        },
+        {
+          "name": "CHAPTER- 13 Establishment Matters",
+          "source_section": "CHAPTER- 13 Establishment Matters",
+          "start_page": 84,
+          "end_page": 102
+        },
+        {
+          "name": "CHAPTER -14 PURCHASES",
+          "source_section": "CHAPTER -14 PURCHASES",
+          "start_page": 103,
+          "end_page": 109
+        },
+        {
+          "name": "CHAPTER 16 STATUTORY COMMITTEES",
+          "source_section": "CHAPTER 16 STATUTORY COMMITTEES",
+          "start_page": 143,
+          "end_page": 150
+        },
+        {
+          "name": "CHAPTER 18 PD ACCOUNTS",
+          "source_section": "CHAPTER 18 PD ACCOUNTS",
+          "start_page": 157,
+          "end_page": 168
+        },
+        {
+          "name": "CHAPTER 19 CENTRE FOR CONTINUING EDUCATION, KERALA",
+          "source_section": "CHAPTER 19 CENTRE FOR CONTINUING EDUCATION, KERALA",
+          "start_page": 169,
+          "end_page": 176
+        },
+        {
+          "name": "CHAPTER - 20 LITIGATION INVOLVING COLLEGIATE EDUCATION DEPARTMENT",
+          "source_section": "CHAPTER - 20 LITIGATION INVOLVING COLLEGIATE EDUCATION DEPARTMENT",
+          "start_page": 177,
+          "end_page": 184
+        }
+      ]
+    },
+    {
+      "category_id": "academic",
+      "name": "Academic",
+      "icon": "🎓",
+      "topics": [
+        {
+          "name": "CHAPTER-15 ADMISSION AND RELATED MATTERS",
+          "source_section": "CHAPTER-15 ADMISSION AND RELATED MATTERS",
+          "start_page": 110,
+          "end_page": 142
+        }
+      ]
+    },
+    {
+      "category_id": "scholarships",
+      "name": "Scholarships & Concessions",
+      "icon": "🎖️",
+      "topics": [
+        {
+          "name": "CHAPTER-17 EDUCATIONAL CONCESSIONS",
+          "source_section": "CHAPTER-17 EDUCATIONAL CONCESSIONS",
+          "start_page": 151,
+          "end_page": 156
+        }
+      ]
+    },
+    {
+      "category_id": "hostel",
+      "name": "Hostel",
+      "icon": "🏠",
+      "topics": [
+        {
+          "name": "CHAPTER - 21 THE FUNCTIONING OF HOSTELS",
+          "source_section": "CHAPTER - 21 THE FUNCTIONING OF HOSTELS",
+          "start_page": 185,
+          "end_page": 191
+        }
+      ]
+    },
+    {
+      "category_id": "fees",
+      "name": "Fees & Finance",
+      "icon": "💰",
+      "topics": [
+        {
+          "name": "Fee Concessions & Aid",
+          "source_section": null,
+          "start_page": 12,
+          "end_page": 12
+        }
+      ]
+    },
+    {
+      "category_id": "attendance",
+      "name": "Attendance",
+      "icon": "📋",
+      "topics": [
+        {
+          "name": "Attendance Requirement",
+          "source_section": null,
+          "start_page": 62,
+          "end_page": 62
+        }
+      ]
+    }
+  ],
+  "key_information": [
+    {
+      "title": "Fee Concessions & Aid",
+      "value": "Educational fee concessions and scholarship schemes available for eligible students",
+      "source_page": 12,
+      "source_section": null,
+      "source_document": "handbookfinalversion.pdf"
+    },
+    {
+      "title": "Hostel Administration",
+      "value": "Hostel operations overseen by Chief Warden with mandatory mess and residency regulations",
+      "source_page": 26,
+      "source_section": null,
+      "source_document": "handbookfinalversion.pdf"
+    },
+    {
+      "title": "Attendance Requirement",
+      "value": "30% minimum attendance requirement",
+      "source_page": 62,
+      "source_section": null,
+      "source_document": "handbookfinalversion.pdf"
+    }
+  ],
+  "suggested_questions": [
+    {
+      "category": "Rules & Regulations",
+      "question": "What is the student code of conduct and disciplinary policy?"
+    },
+    {
+      "category": "Academic",
+      "question": "What is the minimum passing grade for courses?"
+    },
+    {
+      "category": "Academic",
+      "question": "How are grades and CGPA calculated?"
+    },
+    {
+      "category": "Scholarships & Concessions",
+      "question": "What educational concessions or scholarships are available?"
+    },
+    {
+      "category": "Scholarships & Concessions",
+      "question": "Who is eligible for educational fee concessions?"
+    },
+    {
+      "category": "Hostel",
+      "question": "What are the rules and guidelines for hostel residents?"
+    },
+    {
+      "category": "Hostel",
+      "question": "What are the hostel charges and mess facilities?"
+    },
+    {
+      "category": "Fees & Finance",
+      "question": "What are the fee payment rules and schedule?"
+    },
+    {
+      "category": "Fees & Finance",
+      "question": "What is the policy on fee refunds and deposits?"
+    },
+    {
+      "category": "Attendance",
+      "question": "What is the minimum attendance requirement for students?"
+    },
+    {
+      "category": "Attendance",
+      "question": "What are the rules regarding leave of absence and attendance shortage?"
+    }
+  ]
+}

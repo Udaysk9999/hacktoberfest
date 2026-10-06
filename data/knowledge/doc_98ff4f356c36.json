@@ -1,0 +1,89 @@
+{
+  "document_id": "doc_98ff4f356c36",
+  "filename": "College_Handbook_2026.pdf",
+  "total_pages": 3,
+  "overview": "Official institutional document 'College_Handbook_2026.pdf' spanning 3 pages and 5 knowledge chunks. Covers verified policies including Attendance, Academic, Student Services.",
+  "categories": [
+    {
+      "category_id": "attendance",
+      "name": "Attendance",
+      "icon": "📋",
+      "topics": [
+        {
+          "name": "Section 3.1: Minimum Attendance Regulations",
+          "source_section": "Section 3.1: Minimum Attendance Regulations",
+          "start_page": 1,
+          "end_page": 1
+        }
+      ]
+    },
+    {
+      "category_id": "academic",
+      "name": "Academic",
+      "icon": "🎓",
+      "topics": [
+        {
+          "name": "Section 4.2: Grading Criteria & Evaluation",
+          "source_section": "Section 4.2: Grading Criteria & Evaluation",
+          "start_page": 2,
+          "end_page": 2
+        }
+      ]
+    },
+    {
+      "category_id": "student_services",
+      "name": "Student Services",
+      "icon": "👨‍🎓",
+      "topics": [
+        {
+          "name": "Section 7.0: Library Facilities and Quiet Zones",
+          "source_section": "Section 7.0: Library Facilities and Quiet Zones",
+          "start_page": 3,
+          "end_page": 3
+        }
+      ]
+    }
+  ],
+  "key_information": [
+    {
+      "title": "Attendance Requirement",
+      "value": "75% minimum attendance requirement",
+      "source_page": 1,
+      "source_section": null,
+      "source_document": "College_Handbook_2026.pdf"
+    },
+    {
+      "title": "Library Borrowing Limit",
+      "value": "5 books",
+      "source_page": 3,
+      "source_section": null,
+      "source_document": "College_Handbook_2026.pdf"
+    }
+  ],
+  "suggested_questions": [
+    {
+      "category": "Attendance",
+      "question": "What is the minimum attendance requirement for students?"
+    },
+    {
+      "category": "Attendance",
+      "question": "What are the rules regarding leave of absence and attendance shortage?"
+    },
+    {
+      "category": "Academic",
+      "question": "What is the minimum passing grade for courses?"
+    },
+    {
+      "category": "Academic",
+      "question": "How are grades and CGPA calculated?"
+    },
+    {
+      "category": "Student Services",
+      "question": "What are the library borrowing rules and checkout limits?"
+    },
+    {
+      "category": "Student Services",
+      "question": "What student healthcare and counseling services are available?"
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "document_id": "doc_a2e9241bf8b4",
+  "filename": "ts.pdf",
+  "stored_filename": "doc_a2e9241bf8b4_ts.pdf",
+  "file_size_bytes": 1996436,
+  "pages": 10,
+  "chunks_count": 14,
+  "created_at": "2026-10-06T08:28:23.993227+00:00",
+  "status": "processed",
+  "chunks": [
+    {
+      "chunk_id": "doc_a2e9241bf8b4_page1_chunk1",
+      "document_id": "doc_a2e9241bf8b4",
+      "source": "ts.pdf",
+      "page": 1,
+      "text": "An AI-Based Resource-Aware Geo–Textual Framework\n\nfor Disaster Risk and Emergency Response Planning\n\nPresented by Uday Sandip Khode Under the Guidance of\n\nDepartment of Computer Engineering\n\nProf.P.B.Rajole\n\nA Seminar Presentation\n\non\n\nLoknete GopinathjiMundeInstituteof EngineeringEducation &\n\nResearch (LOGMIEER) , Nashik\n\n2026-2027"
+    },
+    {
+      "chunk_id": "doc_a2e9241bf8b4_page2_chunk1",
+      "document_id": "doc_a2e9241bf8b4",
+      "source": "ts.pdf",
+      "page": 2,
+      "text": "Outline\n\nIntroduction\n\nLiterature Survey\n\nProblem Definition\n\nSystem Architecture\n\nAlgorithm\n\nAdvantages and Application\n\nConclusion\n\nReferences"
+    },
+    {
+      "chunk_id": "doc_a2e9241bf8b4_page3_chunk1",
+      "document_id": "doc_a2e9241bf8b4",
+      "source": "ts.pdf",
+      "page": 3,
+      "text": "Introduction\n\n1.Natural disasters require quick and accurate decisions. 2.Information comes from social media, emergency messages, and GIS data. 3.Existing AI methods combine text and GIS data for risk prediction and evacuation planning. 4.However, emergency resource availability and capacity are not explicitly considered. 5.This research combines disaster information, GIS data, and resource availability. 6.It aims to identify high-risk areas and response gaps for better emergency planning."
+    },
+    {
+      "chunk_id": "doc_a2e9241bf8b4_page4_chunk1",
+      "document_id": "doc_a2e9241bf8b4",
+      "source": "ts.pdf",
+      "page": 4,
+      "text": "Serial\n\nNo.\n\nResearcher ’s Name / Year Technique/Algorithm Drawback/Future scope\n\n1\n\n2\n\n3\n\n4\n\n5\n\nLiterature Survey\n\nAhsan et al. (2026)\n\nChaimook et al. (2025)\n\nGao et al. (2025)\n\nBu et al. (2025)\n\nMas et al. (2024)\n\nBERT + GIS Encoder + Attention\n\nFusion\n\nGCN + Temporal Fusion\n\nTransformer\n\nBayesian Network + Improved A*\n\nMultisensor Data Fusion\n\nReinforcement\n\nLearning\n\nDoes not explicitly consider emergency\n\nresource availability\n\nFocuses mainly on flood hazard\n\nclassification\n\nFocuses on landslide risk and safe\n\nroutes\n\nFocuses on agricultural fire and\n\nenvironmental impacts"
+    },
+    {
+      "chunk_id": "doc_a2e9241bf8b4_page4_chunk2",
+      "document_id": "doc_a2e9241bf8b4",
+      "source": "ts.pdf",
+      "page": 4,
+      "text": "ocuses on landslide risk and safe\n\nroutes\n\nFocuses on agricultural fire and\n\nenvironmental impacts\n\nFocuses on tsunami evacuation guidance,\n\nnot resource allocation"
+    },
+    {
+      "chunk_id": "doc_a2e9241bf8b4_page5_chunk1",
+      "document_id": "doc_a2e9241bf8b4",
+      "source": "ts.pdf",
+      "page": 5,
+      "text": "Problem Definition\n\n1.Disaster information is available from multiple sources, such as social media, emergency messages, and GIS data. 2.Existing AI systems can predict disaster risk and support evacuation planning. 3.However, they do not explicitly consider the availability, location, and capacity of emergency resources. 4.This can make it difficult to identify which high-risk areas have insufficient resources. 5.Therefore, there is a need for an AI-based resource-aware framework that combines disaster information, GIS data, and resource availability to identify emergency response gaps and"
+    },
+    {
+      "chunk_id": "doc_a2e9241bf8b4_page5_chunk2",
+      "document_id": "doc_a2e9241bf8b4",
+      "source": "ts.pdf",
+      "page": 5,
+      "text": "s disaster information, GIS data, and resource availability to identify emergency response gaps and support better resource planning."
+    },
+    {
+      "chunk_id": "doc_a2e9241bf8b4_page6_chunk1",
+      "document_id": "doc_a2e9241bf8b4",
+      "source": "ts.pdf",
+      "page": 6,
+      "text": "System Architecture"
+    },
+    {
+      "chunk_id": "doc_a2e9241bf8b4_page7_chunk1",
+      "document_id": "doc_a2e9241bf8b4",
+      "source": "ts.pdf",
+      "page": 7,
+      "text": "Algorithm\n\nStep 1: Collect disaster text, GIS hazard data, and emergency-resource data.\n\nStep 2: Preprocess and normalize the collected data.\n\nStep 3: Extract important features from text, GIS, and resource data.\n\nStep 4: Fuse the three types of features using an AI-based fusion model.\n\nStep 5: Predict the disaster risk level of each area.\n\nStep 6: Compare required resources with available resources to calculate the response gap.\n\nStep 7: Identify and prioritize areas with high risk and large resource gaps."
+    },
+    {
+      "chunk_id": "doc_a2e9241bf8b4_page7_chunk2",
+      "document_id": "doc_a2e9241bf8b4",
+      "source": "ts.pdf",
+      "page": 7,
+      "text": "e the response gap.\n\nStep 7: Identify and prioritize areas with high risk and large resource gaps.\n\nStep 8: Generate an emergency response plan, including resource allocation and safer routes. can you\n\nmake a image which fit all the algorithm"
+    },
+    {
+      "chunk_id": "doc_a2e9241bf8b4_page8_chunk1",
+      "document_id": "doc_a2e9241bf8b4",
+      "source": "ts.pdf",
+      "page": 8,
+      "text": "Advantages and Application\n\nADVANTAGES\n\nCombines multiple data sources for better analysis.\n\nProvides faster disaster-risk assessment.\n\nIdentifies areas with resource shortages.\n\nSupports better resource allocation.\n\nHelps plan safer emergency routes.\n\nAPPLICATIONS\n\nDisaster Risk Assessment – Identify high-risk areas.\n\nEmergency Resource Allocation – Deploy resources where they are needed most.\n\nEvacuation Planning – Find safer routes during disasters.\n\nFlood Management – Monitor flood-affected areas and resource needs."
+    },
+    {
+      "chunk_id": "doc_a2e9241bf8b4_page9_chunk1",
+      "document_id": "doc_a2e9241bf8b4",
+      "source": "ts.pdf",
+      "page": 9,
+      "text": "Conclusion\n\nThe proposed framework combines disaster text, GIS data, and emergency-resource\n\ninformation.\n\nAI-based fusion helps identify disaster risk levels and response gaps.\n\nComparing required and available resources can help identify areas with insufficient\n\nresources.\n\nThe system can support resource allocation, safe route planning, and emergency response.\n\nOverall, the framework aims to provide better and faster decision support during disasters."
+    },
+    {
+      "chunk_id": "doc_a2e9241bf8b4_page10_chunk1",
+      "document_id": "doc_a2e9241bf8b4",
+      "source": "ts.pdf",
+      "page": 10,
+      "text": "References\n\nM. S. Ahsan et al. (2026), “Attention-Based Geo–Textual Fusion Network for Disaster Risk Prediction,” IEEE Open Journal of the Computer Society, 2026.\n\nP. Chaimook et al. (2025), “Spatiotemporal Flood Hazard Classification in Bangkok Using Graph Convolutional Network and Temporal Fusion Transformer,” IEEE Access, 2025.\n\nX. Gao et al. (2025), “Bayesian Network-Based Landslide Susceptibility Safe Route Assessment in the Face of Uncertain Knowledge and Various Information,” IEEE Access, 2025."
+    },
+    {
+      "chunk_id": "doc_a2e9241bf8b4_page10_chunk2",
+      "document_id": "doc_a2e9241bf8b4",
+      "source": "ts.pdf",
+      "page": 10,
+      "text": "e Route Assessment in the Face of Uncertain Knowledge and Various Information,” IEEE Access, 2025.\n\nP. Bu et al. (2025), “Multisensor Data Fusion for Quantifying Agricultural Fire Impacts on Air Quality and Environmental Degradation,” IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing, 2025."
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "document_id": "test_doc_export_md",
+  "filename": "Test_Handbook.pdf",
+  "total_pages": 2,
+  "overview": "Official institutional document 'Test_Handbook.pdf' spanning 2 pages and 1 knowledge chunks. Covers verified policies including Attendance.",
+  "categories": [
+    {
+      "category_id": "attendance",
+      "name": "Attendance",
+      "icon": "📋",
+      "topics": [
+        {
+          "name": "Attendance Guidelines",
+          "source_section": null,
+          "start_page": 1,
+          "end_page": 1
+        }
+      ]
+    }
+  ],
+  "key_information": [
+    {
+      "title": "Attendance Requirement",
+      "value": "75% minimum attendance requirement",
+      "source_page": 1,
+      "source_section": null,
+      "source_document": "Test_Handbook.pdf"
+    }
+  ],
+  "suggested_questions": [
+    {
+      "category": "Attendance",
+      "question": "What is the minimum attendance requirement for students?"
+    },
+    {
+      "category": "Attendance",
+      "question": "What are the rules regarding leave of absence and attendance shortage?"
+    }
+  ]
+}

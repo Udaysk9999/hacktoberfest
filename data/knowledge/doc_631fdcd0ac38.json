@@ -1,0 +1,32 @@
+{
+  "document_id": "doc_631fdcd0ac38",
+  "filename": "College_Handbook.pdf",
+  "total_pages": 2,
+  "overview": "Official institutional document 'College_Handbook.pdf' spanning 2 pages and 2 knowledge chunks. Covers verified policies including Academic.",
+  "categories": [
+    {
+      "category_id": "academic",
+      "name": "Academic",
+      "icon": "🎓",
+      "topics": [
+        {
+          "name": "Academic Guidelines",
+          "source_section": null,
+          "start_page": 2,
+          "end_page": 2
+        }
+      ]
+    }
+  ],
+  "key_information": [],
+  "suggested_questions": [
+    {
+      "category": "Academic",
+      "question": "What is the minimum passing grade for courses?"
+    },
+    {
+      "category": "Academic",
+      "question": "How are grades and CGPA calculated?"
+    }
+  ]
+}
